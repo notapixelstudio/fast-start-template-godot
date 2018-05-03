@@ -6,3 +6,6 @@ export.cfg
 # System/tool-specific ignores
 .directory
 *~
+
+# IntelliJ-speficic
+.idea
