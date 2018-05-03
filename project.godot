@@ -10,12 +10,16 @@ config_version=3
 
 [application]
 
-config/name="Project title"
-config/icon="res://icon.png"
+config/name="Template Project title"
+config/icon="res://screens/logo_napx_studio.png"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "net.kivano.fsm" )
+
+[gui]
+
+theme/custom="res://assets/theme/theme.tres"
 
 [rendering]
 
