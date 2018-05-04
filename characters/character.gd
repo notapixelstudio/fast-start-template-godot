@@ -45,9 +45,6 @@ func _ready():
 	representation.play(SETUP)
 	battlefield = get_parent()
 	representation.play("summon")
-	moves = model.get_moves(self.piece_name)
-	$Pivot/Body.texture = load("res://assets/chess/chess_piece_"+str(side)+"_"+piece_name+".png")
-	$Pivot/Body/StateInfo/Label.set_text(self.piece_name)
 
 func animate(keyword):
 	representation.play(keyword)
@@ -95,8 +92,7 @@ func _physics_process(delta):
 
 func _on_Character_mouse_entered():
 	print("area entered")
-	legal_moves = get_node("/root/World").get_legal_moves(self)
 	
 	
 func _on_Piece_mouse_exited():
-	legal_moves = get_node("/root/World").reset_cells()
+	print("Mouse exited")

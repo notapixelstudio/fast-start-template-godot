@@ -1,27 +1,16 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://characters/character.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/body.png" type="Texture" id=2]
 [ext_resource path="res://characters/shadow.png" type="Texture" id=3]
-[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=4]
-[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=5]
-[ext_resource path="res://characters/FSM/states/Idle/Idle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://characters/FSM/states/Summoned/Summoned.tscn" type="PackedScene" id=7]
-[ext_resource path="res://characters/FSM/states/Walking/Walking.tscn" type="PackedScene" id=8]
-[ext_resource path="res://characters/FSM/states/Attack/Attack.tscn" type="PackedScene" id=9]
-[ext_resource path="res://characters/FSM/states/Dead/Dead.tscn" type="PackedScene" id=10]
-[ext_resource path="res://characters/FSM/states/Taken/Taken.tscn" type="PackedScene" id=11]
-[ext_resource path="res://characters/FSM/transitions/onMovement/onMovement.tscn" type="PackedScene" id=12]
-[ext_resource path="res://characters/FSM/transitions/onAnimationEnd/onAnimationEnd.tscn" type="PackedScene" id=13]
-[ext_resource path="res://characters/FSM/transitions/onEnemyExist/onEnemyExist.tscn" type="PackedScene" id=14]
-[ext_resource path="res://characters/FSM/transitions/onAttackEnd/onAttackEnd.tscn" type="PackedScene" id=15]
-[ext_resource path="res://characters/FSM/transitions/onDeadHit/onDeadHit.tscn" type="PackedScene" id=16]
-[ext_resource path="res://characters/FSM/transitions/onMovementEnd/onMovementEnd.tscn" type="PackedScene" id=17]
-[ext_resource path="res://characters/FSM/transitions/onPieceTaken/onPieceTaken.tscn" type="PackedScene" id=18]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
-resource_name = "die"
+custom_solver_bias = 0.0
+extents = Vector2( 7.99508, 34.6039 )
+
+[sub_resource type="Animation" id=2]
+
 length = 1.0
 loop = false
 step = 0.05
@@ -38,9 +27,8 @@ tracks/0/keys = {
 "values": [ Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ), Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ), Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ), Color( 0.925781, 0.0614777, 0.203277, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource_name = "idle"
 length = 2.0
 loop = true
 step = 0.1
@@ -57,7 +45,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 43 ), Vector2( 0, 34 ), Vector2( 0, 43 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 length = 1.0
 loop = false
@@ -75,9 +63,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource_name = "stagger"
 length = 0.35
 loop = false
 step = 0.05
@@ -94,9 +81,8 @@ tracks/0/keys = {
 "values": [ Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ), Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ), Color( 0.925781, 0.0614777, 0.203277, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource_name = "summon"
 length = 1.0
 loop = false
 step = 0.1
@@ -113,9 +99,9 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
-length = 0.3
+length = 0.5
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -125,16 +111,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -0.526489, 41.1203 ), Vector2( 0.52652, 35.5554 ) ]
 }
-
-[sub_resource type="RectangleShape2D" id=7]
-
-custom_solver_bias = 0.0
-extents = Vector2( 7.15493, 34.6039 )
 
 [node name="Piece" type="KinematicBody2D" groups=[
 "character",
@@ -148,22 +129,28 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "collision" ]
 baseScale = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( -2.07844, 39.7947 )
+scale = Vector2( 5.6337, 0.574945 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/die = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/setup = SubResource( 3 )
-anims/stagger = SubResource( 4 )
-anims/summon = SubResource( 5 )
-anims/walk = SubResource( 6 )
+anims/die = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/setup = SubResource( 4 )
+anims/stagger = SubResource( 5 )
+anims/summon = SubResource( 6 )
+anims/walk = SubResource( 7 )
 blend_times = [  ]
 
-[node name="Tween" type="Tween" parent="." index="1"]
+[node name="Tween" type="Tween" parent="." index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -172,208 +159,30 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Pivot" type="Position2D" parent="." index="2"]
+[node name="Pivot" type="Position2D" parent="." index="3"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Body" type="Sprite" parent="Pivot" index="0"]
 
-position = Vector2( 0, 30.9456 )
+position = Vector2( -0.335121, 40.109 )
 scale = Vector2( 1.09865, 1.13581 )
 texture = ExtResource( 2 )
 offset = Vector2( -0.544521, -55.6007 )
 _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 
-[node name="StateInfo" type="Panel" parent="Pivot/Body" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -35.0
-margin_top = -28.0
-margin_right = 36.0
-margin_bottom = -14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 16
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Theme" ]
-
-[node name="Label" type="Label" parent="Pivot/Body/StateInfo" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 3.0
-margin_top = 1.0
-margin_right = 84.0
-margin_bottom = 18.0
-rect_scale = Vector2( 0.8, 0.8 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.96
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "piece name"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Focus", "Mouse", "Rect", "Size Flags", "Theme", "custom_colors", "custom_fonts", "custom_styles" ]
-
-[node name="Shadow" type="Sprite" parent="." index="3"]
+[node name="Shadow" type="Sprite" parent="." index="4"]
 
 self_modulate = Color( 1, 1, 1, 0.313726 )
 show_behind_parent = true
-position = Vector2( 0, 24.4121 )
-scale = Vector2( 1, 0.323517 )
+position = Vector2( 0.402134, 64.9566 )
+scale = Vector2( 1.40932, 0.323517 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Area2D" type="Area2D" parent="." index="4"]
-
-editor/display_folded = true
-position = Vector2( -0.848083, -27.3905 )
-scale = Vector2( 0.880436, 0.956381 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Pickable", "Transform" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
-position = Vector2( -1.51318, -7.47237 )
-scale = Vector2( 3.72025, 0.601167 )
-shape = SubResource( 7 )
-
-[node name="FSM2D" type="Node2D" parent="." index="5"]
-
-visible = false
-position = Vector2( 1.67087, 1.56916 )
-script = ExtResource( 4 )
-_sections_unfolded = [ "Create new:" ]
-__meta__ = {
-"_edit_group_": true,
-"_editor_icon": ExtResource( 5 )
-}
-path2LogicRoot = NodePath("..")
-onlyActiveStateOnTheScene = false
-initManually = false
-updateMode = 1
-receiceSignalsOnly4ActiveStatesAndTransitions = true
-enableDebug = false
-"Initial state:" = "Summoned"
-"Create new:/Subdirectory for FSM nodes:" = "FSM"
-"Create new:/Create state with name:" = null
-"Create new:/Create transition with name:" = null
-GraphData = {
-"Attack": Vector2( 943, 535 ),
-"Attack_": Vector2( 943, 535 ),
-"Attack__": Vector2( 943, 535 ),
-"Dead": Vector2( 390, 552 ),
-"Dead_": Vector2( 390, 552 ),
-"Dead__": Vector2( 390, 552 ),
-"Idle": Vector2( 404, 260 ),
-"Idle2": Vector2( -9, 27 ),
-"Idle2_": Vector2( -9, 27 ),
-"Idle2__": Vector2( -9, 27 ),
-"Idle_": Vector2( 404, 260 ),
-"Idle__": Vector2( 404, 260 ),
-"Null": Vector2( 602, 249 ),
-"Null2": Vector2( -9, 27 ),
-"Null2_": Vector2( -9, 27 ),
-"Null2__": Vector2( -9, 27 ),
-"Null_": Vector2( 602, 249 ),
-"Null__": Vector2( 602, 249 ),
-"Summoned": Vector2( 400, 10 ),
-"Summoned2": Vector2( 32, -6 ),
-"Summoned2_": Vector2( 32, -6 ),
-"Summoned2__": Vector2( 32, -6 ),
-"Summoned_": Vector2( 400, 10 ),
-"Summoned__": Vector2( 403, 12 ),
-"Taken": Vector2( 160, 382 ),
-"Taken_": Vector2( 164, 392 ),
-"Walking": Vector2( 910, 196 ),
-"Walking_": Vector2( 910, 196 ),
-"Walking__": Vector2( 910, 196 ),
-"onAnimationEnd": Vector2( 145, 242 ),
-"onAnimationEnd_": Vector2( 145, 242 ),
-"onAnimationEnd__": Vector2( 399, 118 ),
-"onAttack": Vector2( 721, 300 ),
-"onAttackEnd": Vector2( 790, 404 ),
-"onAttackEnd2": Vector2( 879, 338 ),
-"onAttackEnd2_": Vector2( 879, 338 ),
-"onAttackEnd2__": Vector2( 879, 338 ),
-"onAttackEnd_": Vector2( 790, 404 ),
-"onAttackEnd__": Vector2( 790, 404 ),
-"onAttack_": Vector2( 721, 300 ),
-"onAttack__": Vector2( 721, 300 ),
-"onDeadHit": Vector2( 392, 370 ),
-"onDeadHit_": Vector2( 392, 370 ),
-"onDeadHit__": Vector2( 392, 370 ),
-"onEnemyExist": Vector2( 1108, 338 ),
-"onEnemyExist_": Vector2( 1108, 338 ),
-"onEnemyExist__": Vector2( 1108, 338 ),
-"onMovement": Vector2( 667, 48 ),
-"onMovementEnd": Vector2( 653, 324 ),
-"onMovementEnd_": Vector2( 653, 324 ),
-"onMovementEnd__": Vector2( 653, 324 ),
-"onMovement_": Vector2( 667, 48 ),
-"onMovement__": Vector2( 667, 48 ),
-"onPieceTaken": Vector2( 155, 550 ),
-"onPieceTaken_": Vector2( 155, 550 )
-}
-
-[node name="States" type="Node2D" parent="FSM2D" index="0"]
-
-[node name="Idle" parent="FSM2D/States" index="0" instance=ExtResource( 6 )]
-
-[node name="Summoned" parent="FSM2D/States" index="1" instance=ExtResource( 7 )]
-
-[node name="Walking" parent="FSM2D/States" index="2" instance=ExtResource( 8 )]
-
-[node name="Attack" parent="FSM2D/States" index="3" instance=ExtResource( 9 )]
-
-[node name="Dead" parent="FSM2D/States" index="4" instance=ExtResource( 10 )]
-
-[node name="Taken" parent="FSM2D/States" index="5" instance=ExtResource( 11 )]
-
-_sections_unfolded = [ "Pause" ]
-
-[node name="Transitions" type="Node2D" parent="FSM2D" index="1"]
-
-position = Vector2( -0.69458, -11.8076 )
-
-[node name="onMovement" parent="FSM2D/Transitions" index="0" instance=ExtResource( 12 )]
-
-[node name="onAnimationEnd" parent="FSM2D/Transitions" index="1" instance=ExtResource( 13 )]
-
-[node name="onEnemyExist" parent="FSM2D/Transitions" index="2" instance=ExtResource( 14 )]
-
-[node name="onAttackEnd" parent="FSM2D/Transitions" index="3" instance=ExtResource( 15 )]
-
-[node name="onDeadHit" parent="FSM2D/Transitions" index="4" instance=ExtResource( 16 )]
-
-[node name="onMovementEnd" parent="FSM2D/Transitions" index="5" instance=ExtResource( 17 )]
-
-[node name="onPieceTaken" parent="FSM2D/Transitions" index="6" instance=ExtResource( 18 )]
 
 [connection signal="mouse_entered" from="." to="." method="_on_Character_mouse_entered"]
 
 [connection signal="mouse_exited" from="." to="." method="_on_Piece_mouse_exited"]
-
-[connection signal="animation_finished" from="AnimationPlayer" to="FSM2D/Transitions/onPieceTaken" method="_on_AnimationPlayer_animation_finished"]
-
-[connection signal="animation_finished" from="AnimationPlayer" to="FSM2D/Transitions/onAnimationEnd" method="_on_AnimationPlayer_animation_finished"]
 
 
