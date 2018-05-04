@@ -372,8 +372,8 @@ position = Vector2( -0.69458, -11.8076 )
 
 [connection signal="mouse_exited" from="." to="." method="_on_Piece_mouse_exited"]
 
-[connection signal="animation_finished" from="AnimationPlayer" to="FSM2D/Transitions/onAnimationEnd" method="_on_AnimationPlayer_animation_finished"]
-
 [connection signal="animation_finished" from="AnimationPlayer" to="FSM2D/Transitions/onPieceTaken" method="_on_AnimationPlayer_animation_finished"]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="FSM2D/Transitions/onAnimationEnd" method="_on_AnimationPlayer_animation_finished"]
 
 

@@ -9,7 +9,9 @@ func _ready():
 	
 func change_scene(to = next_scene):
 	#Applies an transition animation then load the next scene
+	print("cambiando")
 	apply_transition(IN)
+	
 	yield(self, "transition_finished")
 	get_tree().change_scene(to)
 	
@@ -17,7 +19,7 @@ func apply_transition(mode):
 	#Verifies which kind of transition to be used, IN or OUT then plays
 	#the animation forward or backwards then emits a signal for completion
 	var a = $Animator
-	if mode == IN:
+	if mode == 0:
 		a.play("transition")
 	else:
 		a.play_backwards("transition")
