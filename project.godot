@@ -15,7 +15,7 @@ config/icon="res://screens/logo_complete.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "net.kivano.fsm" )
+enabled=PoolStringArray( "net.kivano.fsm", "vnen.tiled_importer" )
 
 [gui]
 
