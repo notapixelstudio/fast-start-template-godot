@@ -36,7 +36,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Theme" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Rect", "Size Flags", "Theme" ]
 next_scene = null
 
 [node name="Animator" type="AnimationPlayer" parent="." index="0"]
@@ -75,6 +75,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 1 )
-_sections_unfolded = [ "Rect", "Theme" ]
+_sections_unfolded = [ "Anchor", "Margin", "Rect", "Theme" ]
 
 

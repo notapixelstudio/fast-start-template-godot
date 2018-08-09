@@ -1,6 +1,7 @@
 extends "res://screens/basic_screen.gd"
 
 func _ready():
+	$Background.rect_size= get_viewport().size
 	$VBoxContainer.add_constant_override("separation", 6)
 	"""
 	if !bgm_creation.is_playing():

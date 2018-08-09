@@ -13,6 +13,10 @@ config_version=3
 config/name="Template Project title"
 config/icon="res://screens/logo_complete.png"
 
+[display]
+
+window/size/height=800
+
 [editor_plugins]
 
 enabled=PoolStringArray( "net.kivano.fsm", "vnen.tiled_importer" )
