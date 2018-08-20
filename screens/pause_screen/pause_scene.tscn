@@ -3,8 +3,6 @@
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://screens/pause_screen/pause_script.gd" type="Script" id=2]
 
-
-
 [node name="Popup" type="PopupPanel"]
 
 modulate = Color( 1, 1, 1, 0.640902 )

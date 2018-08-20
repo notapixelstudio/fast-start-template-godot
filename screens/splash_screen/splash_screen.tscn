@@ -5,7 +5,7 @@
 [ext_resource path="res://screens/logo_complete.png" type="Texture" id=3]
 [ext_resource path="res://assets/theme/textures/frame1.png" type="Texture" id=4]
 
-[node name="SplashScreen" index="0" instance=ExtResource( 1 )]
+[node name="SplashScreen" instance=ExtResource( 1 )]
 
 next_scene = "res://screens/main_screen/main_screen.tscn"
 
@@ -143,7 +143,7 @@ patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
-_sections_unfolded = [ "Patch Margin", "Rect" ]
+_sections_unfolded = [ "Axis Stretch", "Patch Margin", "Rect" ]
 
 [node name="Label" type="Label" parent="NinePatchRect" index="0"]
 

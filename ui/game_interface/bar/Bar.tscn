@@ -7,8 +7,7 @@
 [ext_resource path="res://ui/game_interface/bar/life_bar/bg.png" type="Texture" id=5]
 [ext_resource path="res://ui/game_interface/bar/life_bar/fill.png" type="Texture" id=6]
 
-
-[node name="Bar" type="HBoxContainer" index="0"]
+[node name="Bar" type="HBoxContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0

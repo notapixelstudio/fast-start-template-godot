@@ -2,8 +2,7 @@
 
 [ext_resource path="res://ui/ui/fonts/montserrat_eb_42.tres" type="DynamicFont" id=1]
 
-
-[node name="MarginDemo" type="MarginContainer" index="0"]
+[node name="MarginDemo" type="MarginContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -30,7 +29,7 @@ anchor_bottom = 0.0
 margin_left = 75.0
 margin_top = 75.0
 margin_right = 904.0
-margin_bottom = 196.0
+margin_bottom = 91.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -48,7 +47,7 @@ anchor_bottom = 0.0
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 822.0
-margin_bottom = 114.0
+margin_bottom = 9.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2

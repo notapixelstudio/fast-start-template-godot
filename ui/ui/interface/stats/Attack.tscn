@@ -7,7 +7,6 @@
 [ext_resource path="res://ui/ui/interface/stats/plus.png" type="Texture" id=5]
 [ext_resource path="res://ui/ui/interface/stats/plus_pressed.png" type="Texture" id=6]
 
-
 [node name="Attack" type="HBoxContainer"]
 
 anchor_left = 0.0
@@ -84,9 +83,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 100.0
-margin_top = 28.0
-margin_right = 214.0
-margin_bottom = 68.0
+margin_top = 47.0
+margin_right = 106.0
+margin_bottom = 49.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
