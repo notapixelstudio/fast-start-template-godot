@@ -1,13 +1,12 @@
 extends "res://screens/basic_screen.gd"
 
 func _ready():
-	$Background.rect_size= get_viewport().size
-	$VBoxContainer.add_constant_override("separation", 6)
+	$Menu.add_constant_override("separation", 6)
 	"""
 	if !bgm_creation.is_playing():
 		bgm_creation.play()
-	$Start.grab_focus()
 	"""
+	$Menu/Start.grab_focus()
 	pass
 
 func _on_Start_pressed():
@@ -15,3 +14,6 @@ func _on_Start_pressed():
 
 func _on_Credits_pressed():
 	change_scene("res://screens/credit_screen/credit_screen.tscn")
+
+func _on_QuitButton_pressed():
+	get_tree().quit()

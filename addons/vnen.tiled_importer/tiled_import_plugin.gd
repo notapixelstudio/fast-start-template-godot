@@ -34,7 +34,10 @@ func get_visible_name():
 	return "Scene from Tiled"
 
 func get_recognized_extensions():
-	return ["json", "tmx"]
+	if ProjectSettings.get_setting("tiled_importer/enable_json_format"):
+		return ["json", "tmx"]
+	else:
+		return ["tmx"]
 
 func get_save_extension():
 	return "scn"
@@ -77,12 +80,21 @@ func get_import_options(preset):
 			"hint_string": "Mipmaps,Repeat,Filter,Anisotropic,sRGB,Mirrored Repeat"
 		},
 		{
+			"name": "collision_layer",
+			"default_value": 1,
+			"property_hint": PROPERTY_HINT_LAYERS_2D_PHYSICS
+		},
+		{
 			"name": "embed_internal_images",
 			"default_value": true if preset == PRESET_PIXEL_ART else false
 		},
 		{
 			"name": "save_tiled_properties",
 			"default_value": false
+		},
+		{
+			"name": "add_background",
+			"default_value": true
 		},
 		{
 			"name": "post_import_script",

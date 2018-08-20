@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://characters/character.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/body.png" type="Texture" id=2]
@@ -6,13 +6,9 @@
 [ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=4]
 [ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=5]
 [ext_resource path="res://characters/FSM/states/Idle/Idle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://characters/FSM/states/Idle/Idle.gd" type="Script" id=7]
-[ext_resource path="res://characters/FSM/states/Walking/Walking.tscn" type="PackedScene" id=8]
-[ext_resource path="res://characters/FSM/states/Walking/Walking.gd" type="Script" id=9]
-[ext_resource path="res://characters/FSM/transitions/OnMovement/OnMovement.tscn" type="PackedScene" id=10]
-[ext_resource path="res://characters/FSM/transitions/OnMovement/OnMovement.gd" type="Script" id=11]
-[ext_resource path="res://characters/FSM/transitions/onStop/onStop.tscn" type="PackedScene" id=12]
-[ext_resource path="res://characters/FSM/transitions/onStop/onStop.gd" type="Script" id=13]
+[ext_resource path="res://characters/FSM/states/Walking/Walking.tscn" type="PackedScene" id=7]
+[ext_resource path="res://characters/FSM/transitions/OnMovement/OnMovement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://characters/FSM/transitions/onStop/onStop.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -213,35 +209,27 @@ GraphData = {
 "Idle_": Vector2( -9, 27 ),
 "Idle__": Vector2( -9, 27 ),
 "OnMovement": Vector2( 350, 54 ),
-"Walking": Vector2( 287, 298 ),
+"Walking": Vector2( 355, 223 ),
 "onStop": Vector2( 120, 218 )
 }
 
 [node name="States" type="Node2D" parent="FSM2D" index="0"]
 
-[node name="Idle" type="Node" parent="FSM2D/States" index="0" instance=ExtResource( 6 )]
+[node name="Idle" parent="FSM2D/States" index="0" instance=ExtResource( 6 )]
 
-script = ExtResource( 7 )
-
-[node name="Walking" type="Node" parent="FSM2D/States" index="1" instance=ExtResource( 8 )]
-
-script = ExtResource( 9 )
+[node name="Walking" parent="FSM2D/States" index="1" instance=ExtResource( 7 )]
 
 [node name="Transitions" type="Node2D" parent="FSM2D" index="1"]
 
-[node name="OnMovement" type="Node" parent="FSM2D/Transitions" index="0" instance=ExtResource( 10 )]
+[node name="OnMovement" parent="FSM2D/Transitions" index="0" instance=ExtResource( 8 )]
 
-script = ExtResource( 11 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/Idle") ]
 path2TargetState = NodePath("../../States/Walking")
-intervalBetweenChecks = -1.0
 
-[node name="onStop" type="Node" parent="FSM2D/Transitions" index="1" instance=ExtResource( 12 )]
+[node name="onStop" parent="FSM2D/Transitions" index="1" instance=ExtResource( 9 )]
 
-script = ExtResource( 13 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/Walking") ]
 path2TargetState = NodePath("../../States/Idle")
-intervalBetweenChecks = -1.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_Character_mouse_entered"]
 

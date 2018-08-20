@@ -36,7 +36,7 @@ func read_tmx(path):
 	while parser.get_node_type() != XMLParser.NODE_ELEMENT:
 		err = parser.read()
 		if err != OK:
-			printerr("Error parsing TMX file '%s' (around line %i)." % [path, parser.get_current_line()])
+			printerr("Error parsing TMX file '%s' (around line %d)." % [path, parser.get_current_line()])
 			return err
 
 	if parser.get_node_name().to_lower() != "map":
@@ -52,7 +52,7 @@ func read_tmx(path):
 
 	err = parser.read()
 	if err != OK:
-		printerr("Error parsing TMX file '%s' (around line %i)." % [path, parser.get_current_line()])
+		printerr("Error parsing TMX file '%s' (around line %d)." % [path, parser.get_current_line()])
 		return err
 
 	while err == OK:
@@ -71,35 +71,35 @@ func read_tmx(path):
 				else:
 					var tileset_data = attributes_to_dict(parser)
 					if not "source" in tileset_data:
-						printerr("Error parsing TMX file '%s'. Missing tileset source (around line %i)." % [path, parser.get_current_line()])
+						printerr("Error parsing TMX file '%s'. Missing tileset source (around line %d)." % [path, parser.get_current_line()])
 						return ERR_INVALID_DATA
 					data.tilesets.push_back(tileset_data)
 
 			elif parser.get_node_name() == "layer":
 				var layer = parse_tile_layer(parser, data.infinite)
 				if typeof(layer) != TYPE_DICTIONARY:
-					printerr("Error parsing TMX file '%s'. Invalid tile layer data (around line %i)." % [path, parser.get_current_line()])
+					printerr("Error parsing TMX file '%s'. Invalid tile layer data (around line %d)." % [path, parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.layers.push_back(layer)
 
 			elif parser.get_node_name() == "imagelayer":
 				var layer = parse_image_layer(parser)
 				if typeof(layer) != TYPE_DICTIONARY:
-					printerr("Error parsing TMX file '%s'. Invalid image layer data (around line %i)." % [path, parser.get_current_line()])
+					printerr("Error parsing TMX file '%s'. Invalid image layer data (around line %d)." % [path, parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.layers.push_back(layer)
 
 			elif parser.get_node_name() == "objectgroup":
 				var layer = parse_object_layer(parser)
 				if typeof(layer) != TYPE_DICTIONARY:
-					printerr("Error parsing TMX file '%s'. Invalid object layer data (around line %i)." % [path, parser.get_current_line()])
+					printerr("Error parsing TMX file '%s'. Invalid object layer data (around line %d)." % [path, parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.layers.push_back(layer)
 
 			elif parser.get_node_name() == "group":
 				var layer = parse_group_layer(parser, data.infinite)
 				if typeof(layer) != TYPE_DICTIONARY:
-					printerr("Error parsing TMX file '%s'. Invalid group layer data (around line %i)." % [path, parser.get_current_line()])
+					printerr("Error parsing TMX file '%s'. Invalid group layer data (around line %d)." % [path, parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.layers.push_back(layer)
 
@@ -127,17 +127,19 @@ func read_tsx(path):
 	while parser.get_node_type() != XMLParser.NODE_ELEMENT:
 		err = parser.read()
 		if err != OK:
-			printerr("Error parsing TSX file '%s' (around line %i)." % [path, parser.get_current_line()])
+			printerr("Error parsing TSX file '%s' (around line %d)." % [path, parser.get_current_line()])
 			return err
 
 	if parser.get_node_name().to_lower() != "tileset":
 		printerr("Error parsing TMX file '%s'. Expected 'map' element.")
 		return ERR_INVALID_DATA
 
-	return parse_tileset(parser)
+	var tileset = parse_tileset(parser)
+
+	return tileset
 
 # Parses a tileset element from the XML and return a dictionary
-# Returns san error code if fails
+# Return an error code if fails
 func parse_tileset(parser):
 	var err = OK
 	var data = attributes_to_dict(parser)
@@ -169,7 +171,7 @@ func parse_tileset(parser):
 			elif parser.get_node_name() == "image":
 				var attr = attributes_to_dict(parser)
 				if not "source" in attr:
-					printerr("Error loading image tag. No source attribute found (around line %i)." % [parser.get_current_line()])
+					printerr("Error loading image tag. No source attribute found (around line %d)." % [parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.image = attr.source
 				if "width" in attr:
@@ -189,6 +191,7 @@ func parse_tileset(parser):
 		err = parser.read()
 
 	return data
+
 
 # Parses the data of a single tile from the XML and return a dictionary
 # Returns an error code if fails
@@ -213,9 +216,11 @@ func parse_tile_data(parser):
 				# If there are multiple images in one tile we only use the last one.
 				var attr = attributes_to_dict(parser)
 				if not "source" in attr:
-					printerr("Error loading image tag. No source attribute found (around line %i)." % [parser.get_current_line()])
+					printerr("Error loading image tag. No source attribute found (around line %d)." % [parser.get_current_line()])
 					return ERR_INVALID_DATA
 				data.image = attr.source
+				data.imagewidth = attr.width
+				data.imageheight = attr.height
 
 			elif parser.get_node_name() == "objectgroup":
 				obj_group = attributes_to_dict(parser)
@@ -249,7 +254,7 @@ func parse_tile_data(parser):
 
 # Parses the data of a single object from the XML and return a dictionary
 # Returns an error code if fails
-func parse_object(parser):
+static func parse_object(parser):
 	var err = OK
 	var data = attributes_to_dict(parser)
 
@@ -286,15 +291,8 @@ func parse_object(parser):
 
 			err = parser.read()
 
-	for attr in ["width", "height", "x", "y", "rotation"]:
-		if not attr in data:
-			data[attr] = 0
-	if not "type" in data:
-		data.type = ""
-	if not "visible" in data:
-		data.visible = true
-
 	return data
+
 
 # Parses a tile layer from the XML and return a dictionary
 # Returns an error code if fails
@@ -431,7 +429,7 @@ func parse_image_layer(parser):
 				if parser.get_node_name().to_lower() == "image":
 					var image = attributes_to_dict(parser)
 					if not image.has("source"):
-						printerr("Missing source attribute in imagelayer (around line %i)." % [parser.get_current_line()])
+						printerr("Missing source attribute in imagelayer (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 					data.image = image.source
 
@@ -466,28 +464,28 @@ func parse_group_layer(parser, infinite):
 				if parser.get_node_name() == "layer":
 					var layer = parse_tile_layer(parser, infinite)
 					if typeof(layer) != TYPE_DICTIONARY:
-						printerr("Error parsing TMX file. Invalid tile layer data (around line %i)." % [parser.get_current_line()])
+						printerr("Error parsing TMX file. Invalid tile layer data (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 					result.layers.push_back(layer)
 
 				elif parser.get_node_name() == "imagelayer":
 					var layer = parse_image_layer(parser)
 					if typeof(layer) != TYPE_DICTIONARY:
-						printerr("Error parsing TMX file. Invalid image layer data (around line %i)." % [parser.get_current_line()])
+						printerr("Error parsing TMX file. Invalid image layer data (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 					result.layers.push_back(layer)
 
 				elif parser.get_node_name() == "objectgroup":
 					var layer = parse_object_layer(parser)
 					if typeof(layer) != TYPE_DICTIONARY:
-						printerr("Error parsing TMX file. Invalid object layer data (around line %i)." % [parser.get_current_line()])
+						printerr("Error parsing TMX file. Invalid object layer data (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 					result.layers.push_back(layer)
 
 				elif parser.get_node_name() == "group":
-					var layer = parse_group_layer(parser)
+					var layer = parse_group_layer(parser, infinite)
 					if typeof(layer) != TYPE_DICTIONARY:
-						printerr("Error parsing TMX file. Invalid group layer data (around line %i)." % [parser.get_current_line()])
+						printerr("Error parsing TMX file. Invalid group layer data (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 					result.layers.push_back(layer)
 
@@ -504,7 +502,7 @@ func parse_group_layer(parser, infinite):
 
 # Parses properties data from the XML and return a dictionary
 # Returns an error code if fails
-func parse_properties(parser):
+static func parse_properties(parser):
 	var err = OK
 	var data = {
 		"properties": {},
@@ -522,7 +520,7 @@ func parse_properties(parser):
 				if parser.get_node_name() == "property":
 					var prop_data = attributes_to_dict(parser)
 					if not (prop_data.has("name") and prop_data.has("value")):
-						printerr("Missing information in custom properties (around line %i)." % [parser.get_current_line()])
+						printerr("Missing information in custom properties (around line %d)." % [parser.get_current_line()])
 						return ERR_INVALID_DATA
 
 					data.properties[prop_data.name] = prop_data.value
@@ -536,7 +534,7 @@ func parse_properties(parser):
 	return data
 
 # Reads the attributes of the current element and return them as a dictionary
-func attributes_to_dict(parser):
+static func attributes_to_dict(parser):
 	var data = {}
 	for i in range(parser.get_attribute_count()):
 		var attr = parser.get_attribute_name(i)
