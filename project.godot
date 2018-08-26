@@ -16,6 +16,7 @@ config/icon="res://screens/logo_complete.png"
 [autoload]
 
 global="*res://globals/global.gd"
+persistance="res://globals/persistance.gd"
 
 [display]
 
