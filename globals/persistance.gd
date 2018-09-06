@@ -11,7 +11,7 @@ func save_game():
 	var save_dict = {}
 	# Get all the save data from persistent nodes
 	var save_nodes = get_tree().get_nodes_in_group("persist")
-	for i in save_nodes:
+	for node in save_nodes:
 		# The key to access each data dictionary is the node's path, so we can retrieve the node in load_game below
 		# For this to work, the node path must not change! You can move the nodes up/down the hierarchy,
 		# But if you give them a new parent, you'll have to update the save

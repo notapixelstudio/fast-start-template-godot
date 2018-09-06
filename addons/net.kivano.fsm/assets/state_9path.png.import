@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/state_9path.png-4dc0c84b0ad572b04752527b385e7c85.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/state_9path.png"
-dest_files=[ "res://.import/state_9path.png-4dc0c84b0ad572b04752527b385e7c85.stex" ]
-
 [params]
 
 compress/mode=0

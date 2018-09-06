@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/fsm.svg-8a2b60b38d31c26d893333ea60e8f91f.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/fsm.svg"
-dest_files=[ "res://.import/fsm.svg-8a2b60b38d31c26d893333ea60e8f91f.stex" ]
-
 [params]
 
 compress/mode=0

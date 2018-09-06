@@ -20,9 +20,10 @@ func apply_transition(mode):
 	#Verifies which kind of transition to be used, IN or OUT then plays
 	#the animation forward or backwards then emits a signal for completion
 	var a = $Animator
-	if mode == 0:
+	if mode == IN:
 		a.play("transition")
 	else:
 		a.play_backwards("transition")
 	yield(a, "animation_finished")
 	emit_signal("transition_finished")
+	

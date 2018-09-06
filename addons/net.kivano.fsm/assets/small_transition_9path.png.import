@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/small_transition_9path.png-8ebf94ad6a087b9ee45187bb64e6359a.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/small_transition_9path.png"
-dest_files=[ "res://.import/small_transition_9path.png-8ebf94ad6a087b9ee45187bb64e6359a.stex" ]
-
 [params]
 
 compress/mode=0

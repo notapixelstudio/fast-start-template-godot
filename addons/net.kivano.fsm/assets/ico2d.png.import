@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/ico2d.png-f3d6c574cd04045cf94acde59e8b7eca.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/ico2d.png"
-dest_files=[ "res://.import/ico2d.png-f3d6c574cd04045cf94acde59e8b7eca.stex" ]
-
 [params]
 
 compress/mode=0

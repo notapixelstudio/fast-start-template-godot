@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/icon_white_32.png-f88c41fe53d709d98246342569fb5955.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/icon_white_32.png"
-dest_files=[ "res://.import/icon_white_32.png-f88c41fe53d709d98246342569fb5955.stex" ]
-
 [params]
 
 compress/mode=0

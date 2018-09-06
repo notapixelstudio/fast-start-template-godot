@@ -4,11 +4,6 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/delete.png-127e161c99d924aecc0d0d1afbb22fd1.stex"
 
-[deps]
-
-source_file="res://addons/net.kivano.fsm/assets/delete.png"
-dest_files=[ "res://.import/delete.png-127e161c99d924aecc0d0d1afbb22fd1.stex" ]
-
 [params]
 
 compress/mode=0

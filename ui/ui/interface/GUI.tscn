@@ -6,11 +6,12 @@
 [ext_resource path="res://ui/ui/interface/stats/Defense.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/ui/interface/left.png" type="Texture" id=5]
 [ext_resource path="res://ui/ui/interface/left_pressed.png" type="Texture" id=6]
-[ext_resource path="res://characters/player/body.png" type="Texture" id=7]
+[ext_resource path="res://actors/player/body.png" type="Texture" id=7]
 [ext_resource path="res://ui/ui/interface/right.png" type="Texture" id=8]
 [ext_resource path="res://ui/ui/interface/right_pressed.png" type="Texture" id=9]
 [ext_resource path="res://ui/ui/interface/stats/select.png" type="Texture" id=10]
 [ext_resource path="res://ui/ui/interface/stats/select_pressed.png" type="Texture" id=11]
+
 
 [node name="GUI" type="HBoxContainer"]
 

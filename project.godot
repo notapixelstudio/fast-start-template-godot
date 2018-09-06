@@ -10,13 +10,13 @@ config_version=3
 
 [application]
 
-config/name="Template Project title"
+config/name="Template Project"
 config/icon="res://screens/logo_complete.png"
 
 [autoload]
 
 global="*res://globals/global.gd"
-persistance="res://globals/persistance.gd"
+persistance="*res://globals/persistance.gd"
 
 [display]
 
@@ -28,6 +28,7 @@ enabled=PoolStringArray( "net.kivano.fsm", "vnen.tiled_importer" )
 
 [gui]
 
+theme/use_hidpi=true
 theme/custom="res://assets/theme/theme.tres"
 
 [input]
@@ -37,6 +38,7 @@ debug=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"",
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
 
 [tiled_importer]

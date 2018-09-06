@@ -1,4 +1,5 @@
 # global script
+extends Node 
 
 func _ready():
 	# if we want to save data from global
