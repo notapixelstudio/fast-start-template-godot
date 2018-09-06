@@ -4,7 +4,7 @@
 [ext_resource path="res://ui/ui/interface/left.png" type="Texture" id=2]
 [ext_resource path="res://ui/ui/interface/right.png" type="Texture" id=3]
 
-[node name="Element" type="HBoxContainer"]
+[node name="Element" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,7 +47,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Focus", "Mouse", "Rect", "custom_fonts" ]
+_sections_unfolded = [ "Focus", "Mouse", "Rect" ]
 
 [node name="Padding" type="Label" parent="." index="1"]
 

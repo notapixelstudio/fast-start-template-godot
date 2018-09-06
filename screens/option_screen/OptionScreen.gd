@@ -9,7 +9,7 @@ func _exit_tree():
 		print(node.description, node.value)
 		global.set(node.description, node.value)
 	# when we leave the scene
-	persistance.save_game()
+	# persistance.save_game()
 
 
 func _ready():
@@ -21,6 +21,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_back"):
 		get_tree().change_scene(global.from_scene)
+		
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
