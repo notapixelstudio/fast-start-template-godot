@@ -7,34 +7,27 @@
 [ext_resource path="res://logo.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/fonts/disposable_fontdata.tres" type="DynamicFont" id=6]
 
-
 [node name="CreditScreen" index="0" instance=ExtResource( 1 )]
-
 script = ExtResource( 2 )
-_sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Rect", "Size Flags" ]
 next_scene = "res://screens/main_screen/main_screen.tscn"
 
 [node name="Transition" parent="." index="1"]
-
 editor/display_folded = true
 layer = 2
 
 [node name="ColorRect" parent="Transition" index="0"]
-
 margin_left = -1280.0
 margin_top = 0.0
 margin_right = -80.0
 margin_bottom = 600.0
 
 [node name="Background" parent="." index="2"]
-
 margin_left = 1.0
 margin_top = 2.0
 margin_right = 1064.0
 margin_bottom = 634.0
 
 [node name="Tools" type="VBoxContainer" parent="." index="3"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -54,13 +47,14 @@ alignment = 0
 _sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [node name="Label" type="Label" parent="Tools" index="0"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 796.0
-margin_bottom = 24.0
+margin_left = 273.0
+margin_top = 78.0
+margin_right = 635.0
+margin_bottom = 102.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -78,7 +72,6 @@ max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
 [node name="music_credits" type="Label" parent="." index="4"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -103,23 +96,21 @@ max_lines_visible = -1
 _sections_unfolded = [ "Theme", "custom_fonts" ]
 
 [node name="Credits" type="Sprite" parent="." index="5"]
-
-position = Vector2( 358.273, 2.91895 )
+position = Vector2( 368.606, -8.89027 )
 scale = Vector2( 1.17592, 1.03117 )
 texture = ExtResource( 5 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
 [node name="Label" type="Label" parent="." index="6"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 455.0
-margin_top = 279.0
-margin_right = 647.0
-margin_bottom = 310.0
+margin_left = 454.0
+margin_top = 324.0
+margin_right = 646.0
+margin_bottom = 355.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -136,7 +127,6 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Back" type="Button" parent="." index="7"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -161,5 +151,3 @@ flat = false
 align = 1
 
 [connection signal="pressed" from="Back" to="." method="_on_Button_pressed"]
-
-

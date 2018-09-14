@@ -7,7 +7,7 @@
 [ext_resource path="res://screens/game_screen/wall_left.tscn" type="PackedScene" id=5]
 [ext_resource path="res://screens/game_screen/wall_right.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/Hero2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://actors/Hero.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/HeroWithState.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
