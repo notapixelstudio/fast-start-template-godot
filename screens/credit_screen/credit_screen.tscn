@@ -4,8 +4,9 @@
 [ext_resource path="res://screens/credit_screen/credit_screen.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/theme/fonts/joystix.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/img/logo.png" type="Texture" id=5]
+[ext_resource path="res://logo.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/fonts/disposable_fontdata.tres" type="DynamicFont" id=6]
+
 
 [node name="CreditScreen" index="0" instance=ExtResource( 1 )]
 

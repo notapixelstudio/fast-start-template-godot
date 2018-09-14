@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="slope" type="StaticBody2D"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionPolygon2D" parent="." index="0"]
+
+position = Vector2( -50, 0 )
+build_mode = 0
+polygon = PoolVector2Array( 400, 520, 560, 460, 810, 460, 810, 520 )
+
+[node name="shape2" type="CollisionPolygon2D" parent="." index="1"]
+
+position = Vector2( 1780, 390 )
+build_mode = 0
+polygon = PoolVector2Array( 128, 4, 0, 132, 128, 132 )
+_sections_unfolded = [ "Transform" ]
+
+

@@ -2,8 +2,7 @@
 
 [ext_resource path="res://screens/option_screen/OptionScreen.gd" type="Script" id=1]
 
-[node name="OptionScreen" type="Control" index="0"]
-
+[node name="OptionScreen" type="Control"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -17,8 +16,7 @@ size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Focus" ]
 
-[node name="Title" type="Label" parent="." index="0"]
-
+[node name="Title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.0
 anchor_right = 0.5
@@ -39,8 +37,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Options" type="VBoxContainer" parent="." index="1"]
-
+[node name="Options" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -58,5 +55,3 @@ size_flags_vertical = 1
 alignment = 0
 
 [connection signal="focus_entered" from="Title" to="." method="_on_Label_focus_entered"]
-
-
