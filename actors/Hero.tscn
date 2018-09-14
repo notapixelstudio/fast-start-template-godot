@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/Hero.gd" type="Script" id=1]
 [ext_resource path="res://actors/blocks.png" type="Texture" id=2]
 [ext_resource path="res://actors/state_machine/state_machine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/state_machine/states/dash.gd" type="Script" id=4]
+[ext_resource path="res://actors/state_machine/states/wall.gd" type="Script" id=5]
+[ext_resource path="res://actors/state_machine/states/jump.gd" type="Script" id=6]
+[ext_resource path="res://actors/state_machine/states/walk.gd" type="Script" id=7]
+[ext_resource path="res://actors/state_machine/states/idle.gd" type="Script" id=8]
+[ext_resource path="res://actors/state_machine/states/fall.gd" type="Script" id=9]
+[ext_resource path="res://actors/Label.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7, 7.5 )
+extents = Vector2( 20, 20 )
 
 [node name="Hero" type="KinematicBody2D"]
 input_pickable = false
@@ -16,6 +23,19 @@ collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
+_sections_unfolded = [ "collision", "motion" ]
+GRAVITY = 50
+FLOOR_NORMAL = Vector2( 0, -1 )
+SLOPE_STOP_SPEED = 200
+SLOPE_MAX_DEGREE = 46.0
+FALL_THRESHOLD = 150.0
+can_dash = true
+left = "ui_left"
+right = "ui_right"
+up = "ui_up"
+down = "ui_down"
+jump = "ui_select"
+dash = "ui_cancel"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -28,4 +48,60 @@ shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
 [node name="state_machine" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
 
+[node name="dash" type="Node" parent="state_machine"]
+script = ExtResource( 4 )
+dash_length = 300
+dash_speed = 600
+
+[node name="wall" type="Node" parent="state_machine"]
+script = ExtResource( 5 )
+wall_jump = 800
+dash_jump_multiplier = 1.4
+MAX_WALL_SPEED = 600
+
+[node name="jump" type="Node" parent="state_machine"]
+script = ExtResource( 6 )
+jump_height = 800
+max_jumps = 2
+
+[node name="walk" type="Node" parent="state_machine"]
+script = ExtResource( 7 )
+walk_speed = 400
+
+[node name="fall_threshold" type="Timer" parent="state_machine/walk"]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="idle" type="Node" parent="state_machine"]
+script = ExtResource( 8 )
+
+[node name="fall" type="Node" parent="state_machine"]
+script = ExtResource( 9 )
+MAX_FALL_SPEED = 2000
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 19.0
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "State"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 10 )
+
+[connection signal="state_changed" from="state_machine" to="Label" method="_on_state_machine_state_changed"]

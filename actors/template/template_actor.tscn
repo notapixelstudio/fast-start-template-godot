@@ -58,13 +58,12 @@ shape = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="walk" type="Node" parent="state_machine"]
-editor/display_folded = true
 script = ExtResource( 4 )
 walk_speed = 400
 
 [node name="fall_threshold" type="Timer" parent="state_machine/walk"]
 process_mode = 0
-wait_time = 2.0
+wait_time = 1.53358
 one_shot = true
 autostart = false
 script = SubResource( 2 )

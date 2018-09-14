@@ -13,8 +13,10 @@ func setup(actor, previous_state):
 	actor.emit_signal("perform_action", "fall")
 
 func input_process(actor, event):
+	
 	if event.is_action_pressed(actor.right):
 		actor.direction = 1
+		print(in_air_speed)
 		actor.velocity.x = in_air_speed * actor.direction
 	elif event.is_action_pressed(actor.left):
 		actor.direction = -1

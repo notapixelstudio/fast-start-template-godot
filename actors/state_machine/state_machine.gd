@@ -19,6 +19,7 @@ func set_state(new_state):
 		previous_state = new_state
 	state = new_state
 	state.setup(actor, previous_state.name)
+	print(state.name)
 	
 func get_state():
 	return state
