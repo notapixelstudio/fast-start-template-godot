@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://actors/Hero.gd" type="Script" id=1]
+[ext_resource path="res://actors/AI.gd" type="Script" id=1]
 [ext_resource path="res://actors/blocks.png" type="Texture" id=2]
 [ext_resource path="res://actors/state_machine/state_machine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/state_machine/states/dash.gd" type="Script" id=4]
@@ -15,7 +15,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 20 )
 
-[node name="Hero" type="KinematicBody2D"]
+[node name="AI" type="KinematicBody2D"]
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -26,15 +26,9 @@ _sections_unfolded = [ "collision", "motion" ]
 GRAVITY = 50
 FLOOR_NORMAL = Vector2( 0, -1 )
 SLOPE_STOP_SPEED = 200
-SLOPE_MAX_DEGREE = 46.0
-FALL_THRESHOLD = 150.0
+SLOPE_MAX_DEGREE = 46
+FALL_THRESHOLD = 100
 can_dash = true
-left = "ui_left"
-right = "ui_right"
-up = "ui_up"
-down = "ui_down"
-jump = "ui_select"
-dash = "ui_cancel"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

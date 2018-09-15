@@ -7,6 +7,11 @@ export (String) var down = "ui_down"
 export (String) var jump = "ui_select"
 export (String) var dash = "ui_cancel"
 
+
+func _ready():
+	set_process_input(false)
+
+
 # add a node, specified by its script gd in the actor state_machine
 func add_state(state_name):
 	if state_machine.get_node(state_name):
@@ -22,7 +27,7 @@ func remove_state(state_name):
 	var state_to_remove = state_machine.get_node("state_name")
 	state_machine.remove_child(state_to_remove)
 	return true
-
+	
 func handle_input():
 	pass
 

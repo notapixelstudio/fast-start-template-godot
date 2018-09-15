@@ -27,7 +27,7 @@ func _ready():
 
 func _physics_process(delta):
 	motion.y += GRAVITY
-	var is_moving = Input.is_action_pressed('ui_right') or Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_up');
+	var is_moving = Input.is_action_pressed('ui_right') or Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_select');
 	
 	if Input.is_action_pressed('ui_right') and not Input.is_action_pressed('ui_left'):
 		motion.x = SPEED
@@ -39,10 +39,10 @@ func _physics_process(delta):
 	else:
 		motion.x = 0
 		
-	if is_on_floor() and Input.is_action_just_pressed('ui_up'):
+	if is_on_floor() and Input.is_action_just_pressed('ui_select'):
 		motion.y = -JUMP
 		
-	if Input.is_action_just_released('ui_up') and motion.y < 0:
+	if Input.is_action_just_released('ui_select') and motion.y < 0:
 		motion.y = 0
 	
 	motion = move_and_slide(motion, UP)
