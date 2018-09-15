@@ -91,10 +91,4 @@ position = Vector2( 17.8113, 495.977 )
 
 [node name="AI" parent="." instance=ExtResource( 10 )]
 position = Vector2( 583.664, 261.69 )
-left = "ui_left"
-right = "ui_right"
-up = "ui_up"
-down = "ui_down"
-jump = "ui_select"
-dash = "ui_cancel"
 

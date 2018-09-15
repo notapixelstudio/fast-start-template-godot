@@ -4,10 +4,12 @@ var debug = false
 onready var DebugNode = get_node("DebugNode")
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
+	# random generating AI guys
+	for i in rand_range(3, 10):
+		var d = load("res://actors/AIWithState.tscn").instance()
+		d.position = $AI.position + Vector2(rand_range(-200, 200), rand_range(-200, 200))
+		add_child(d)
+		
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
