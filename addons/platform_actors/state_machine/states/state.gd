@@ -4,6 +4,7 @@ func _ready():
 	set_process_input(false)
 	set_process(false)
 	set_physics_process(false)
+
 func process(actor, delta):
 	pass
 	

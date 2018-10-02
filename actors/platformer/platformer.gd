@@ -8,7 +8,6 @@ const FRICTION = -500
 var direction = 1 setget set_direction
 var velocity = Vector2(0, 0) setget set_velocity
 
-var state_machine
 var starting_state = "idle"
 
 export (float) var GRAVITY = 50
