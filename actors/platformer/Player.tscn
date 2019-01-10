@@ -1,41 +1,36 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://actors/platformer/player_state_machine.gd" type="Script" id=1]
+[ext_resource path="res://actors/platformer/PlayerStateMachine.gd" type="Script" id=1]
+[ext_resource path="res://actors/platformer/states/Idle.gd" type="Script" id=2]
+[ext_resource path="res://actors/platformer/states/Move.gd" type="Script" id=3]
+[ext_resource path="res://actors/platformer/states/Die.gd" type="Script" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="."]
 
-[node name="StateMachine" type="Node" parent="." index="2"]
-
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
-START_STATE = null
 
-[node name="Idle" type="Node" parent="StateMachine" index="0"]
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
 
-[node name="Move" type="Node" parent="StateMachine" index="1"]
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
 
-[node name="Jump" type="Node" parent="StateMachine" index="2"]
+[node name="Jump" type="Node" parent="StateMachine"]
 
-[node name="ground_ray" type="RayCast2D" parent="." index="3"]
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
 
+[node name="ground_ray" type="RayCast2D" parent="."]
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 20 )
-collision_mask = 1
-
 
