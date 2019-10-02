@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://HUD/option_screen/ElementOption.tscn" type="PackedScene" id=1]
+[ext_resource path="res://HUD/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HUD/option_screen/ElemSlider.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hide"
+length = 0.1
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+length = 0.1
+
+[sub_resource type="Animation" id=3]
+resource_name = "standby"
+
+[node name="Options" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.96063
+margin_bottom = 5.96063
+color = Color( 0, 0, 0, 0.745098 )
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.713726 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = -207.0
+margin_right = 229.0
+margin_bottom = 262.0
+mouse_filter = 1
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 453.0
+margin_bottom = 25.0
+text = "Options"
+align = 1
+uppercase = true
+
+[node name="Items" type="VBoxContainer" parent="Panel"]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 453.0
+margin_bottom = 461.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 6
+
+[node name="Element" parent="Panel/Items" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_right = 445.0
+margin_bottom = 50.0
+
+[node name="ONOFF" parent="Panel/Items" instance=ExtResource( 2 )]
+margin_top = 56.0
+margin_right = 445.0
+margin_bottom = 106.0
+
+[node name="Music" parent="Panel/Items" instance=ExtResource( 3 )]
+margin_top = 112.0
+margin_right = 445.0
+margin_bottom = 162.0
+
+[node name="Music2" parent="Panel/Items" instance=ExtResource( 3 )]
+margin_top = 168.0
+margin_right = 445.0
+margin_bottom = 218.0
+
+[node name="Music3" parent="Panel/Items" instance=ExtResource( 3 )]
+margin_top = 224.0
+margin_right = 445.0
+margin_bottom = 274.0
+
+[node name="Control" type="Control" parent="Panel/Items"]
+margin_top = 280.0
+margin_right = 445.0
+margin_bottom = 341.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Panel/Items"]
+margin_top = 347.0
+margin_right = 445.0
+margin_bottom = 397.0
+rect_min_size = Vector2( 0, 50 )
+text = "BACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide = SubResource( 1 )
+anims/show = SubResource( 2 )
+anims/standby = SubResource( 3 )
+
+[connection signal="pressed" from="Panel/Items/Button" to="." method="_on_Button_pressed"]
